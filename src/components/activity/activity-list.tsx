@@ -1,0 +1,4 @@
+import Link from "next/link";
+export function ActivityList({items,schoolSlug}:{items:{id:string;status:string;short_description:string|null;activities:{official_name:string;slug:string;activity_types:{name:string}|null};academic_years:{label:string}}[];schoolSlug:string}) {
+  return items.length?<div className="card-grid">{items.map(item=><article className="activity-card" key={item.id}><p className="eyebrow">{item.activities.activity_types?.name ?? "Activity"}</p><h2>{item.status==="PUBLISHED"?<Link href={`/s/${schoolSlug}/activities/${item.activities.slug}`}>{item.activities.official_name}</Link>:item.activities.official_name}</h2><p>{item.short_description??"Not provided"}</p><p className="meta">{item.academic_years.label} · {item.status==="PUBLISHED"?"Published":"Private draft"}</p></article>)}</div>:<div className="empty"><h2>No activities to show yet</h2><p>Activity information will appear here when it is ready for your account.</p></div>;
+}
