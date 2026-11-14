@@ -1,0 +1,48 @@
+{
+  "name": "club-compass",
+  "version": "0.3.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test src/test/*.test.mts",
+    "check": "npm run test && npm run typecheck && npm run lint && npm run check:secrets",
+    "db:start": "supabase start",
+    "db:stop": "supabase stop",
+    "db:reset": "supabase db reset",
+    "db:test": "supabase test db",
+    "db:test-users": "node scripts/create-local-test-users.mjs",
+    "db:migrate": "supabase migration up --local",
+    "db:configure": "node scripts/configure-local-supabase.mjs",
+    "check:secrets": "node scripts/check-secrets.mjs",
+    "db:types": "node scripts/generate-database-types.mjs",
+    "test:e2e": "playwright test",
+    "test:browser-install": "playwright install chromium"
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.12.5",
+    "@supabase/supabase-js": "^2.115.0",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.40.0",
+    "next": "16.4.6",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "zod": "^4.5.4"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.0",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.6",
+    "supabase": "^2.116.0",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
